@@ -1,3 +1,4 @@
+require("dotenv").config();
 let express = require("./node_modules/express");
 const app = express();
 const sequilze = require("./db");
@@ -5,7 +6,6 @@ const sequilze = require("./db");
 let user = require("./controllers/usercontroller");
 let beer = require("./controllers/beercontroller");
 
-require('dotenv').config();
 sequilze.sync();
 
 app.use(require("./middleware/headers"));

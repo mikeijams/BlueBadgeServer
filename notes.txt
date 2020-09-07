@@ -1,3 +1,5 @@
 heroku create beer-server-1150
 
 heroku addons:create heroku-postgresql:hobby-dev --app beer-server-1150
+
+https://beer-server-1150.herokuapp.com/

@@ -20,7 +20,7 @@ router.post("/:create", validateSession, (req, res) => {
 });
 
 ///GET LOGS FOR USER//
-router.get("/:mine", validateSession, function (req, res) {
+router.get("/mine/:id", validateSession, function (req, res) {
   let owner = req.user.id;
   Beer.findAll({
     where: { owner: owner },
@@ -31,16 +31,15 @@ router.get("/:mine", validateSession, function (req, res) {
 
 ///GET LOGS FOR all//
 
-
 router.get("/", (req, res) => {
-    Beer.findAll()
-    .then(beer =>res.status(200).json(beer))
-    .catch(err => res.status(500).json({error: err}))
-})
+  Beer.findAll()
+    .then((beer) => res.status(200).json(beer))
+    .catch((err) => res.status(500).json({ error: err }));
+});
 
 //	Allows individual logs to be updated by a user.
 
-router.put("/:update", validateSession, function (req, res) {
+router.put("/update/:id", validateSession, function (req, res) {
   const updateBeer = {
     name: req.body.beer.name,
     brewery: req.body.beer.brewery,
@@ -67,3 +66,14 @@ router.delete("/:id", validateSession, function (req, res) {
 });
 
 module.exports = router;
+
+
+///get by id
+router.get("/:id", validateSession, function (req, res) {
+  let post = req.post.id;
+  Beer.findAll({
+    where: { owner: owner },
+  })
+    .then((beer) => res.status(200).json(beer))
+    .catch((err) => res.status(500).json({ error: err }));
+});
